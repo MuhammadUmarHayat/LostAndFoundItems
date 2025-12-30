@@ -1,0 +1,36 @@
+create folder lnf
+cmd +enter
+
+python -m venv venv
+venv\Scripts\activate
+pip install flask
+pip install tensorflow pillow numpy
+or 
+python -m pip install onnxruntime pillow numpy
+
+install python 10
+https://www.python.org/downloads/windows/
+
+cd C:\xampp\htdocs\lnf
+deactivate   # if old venv active
+rmdir /s /q venv310
+
+python -m venv venv310
+venv310\Scripts\activate
+python -m pip install --upgrade pip setuptools wheel
+python -m pip install tensorflow flask pymysql pillow scikit-learn
+#verify tenserflow is installed or not?
+python -c "import tensorflow as tf; print(tf.__version__)"
+
+
+
+
+https://chatgpt.com/s/t_693a8a678db881918c31a15a642e98f7
+https://chatgpt.com/s/t_693a910cfc148191b31f118f3470fb34
+
+
+image copywritting
+https://chatgpt.com/s/t_69515d042e988191b0432b2a04305af9
+
+
+pip install pillow

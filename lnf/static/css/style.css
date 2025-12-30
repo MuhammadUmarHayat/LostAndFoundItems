@@ -1,0 +1,55 @@
+/* Reset default margin */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #b3e0f2; /* light blue */
+  font-family: 'Arial', sans-serif;
+}
+
+/* Container for layout */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+}
+
+/* Logo and text */
+.logo {
+  text-align: center;
+}
+
+.icon {
+  font-size: 40px;
+  color: orange;
+  margin-bottom: 10px;
+}
+
+.logo h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 36px;
+  color: #004d66;
+  margin: 0;
+}
+
+/* Login/Sign in links */
+.auth-links {
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  font-size: 14px;
+}
+
+.auth-links a {
+  text-decoration: none;
+  color: #e74c3c;
+  margin: 0 5px;
+  font-weight: bold;
+}
+
+.auth-links span {
+  color: #e74c3c;
+}
