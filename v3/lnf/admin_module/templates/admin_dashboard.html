@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Lost & Found Application</title>
+
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+html, body {
+    height: 100%;
+    background-color: #b3e0f2;
+    font-family: 'Poppins', sans-serif;
+}
+
+.navbar {
+     background-color: #1b5a4a
+    /* background-color:  #0d6efd; */
+}
+.navbar a {
+    color: #fff !important;
+}
+
+ .form-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 80px;
+}
+
+.auth-card {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    padding: 30px;
+    width: 100%;
+    max-width: 480px;
+}
+
+.auth-card h2 {
+    color: #1b5a4a;
+    font-weight: 700;
+}
+
+.auth-card p {
+    color: #666;
+    font-size: 14px;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #333;
+}
+
+.form-control {
+    border-radius: 10px;
+    padding: 10px 14px;
+}
+
+.form-control:focus {
+    border-color: #1b5a4a;
+    box-shadow: 0 0 0 0.2rem rgba(27,90,74,.25);
+}
+
+.btn-theme {
+    background-color: #1b5a4a;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 30px;
+    padding: 10px;
+}
+
+.btn-theme:hover {
+    background-color: #144538;
+}
+
+.signup-text {
+    font-size: 14px;
+}
+
+.signup-text a {
+    color: #1b5a4a;
+    font-weight: 600;
+    text-decoration: none;
+}
+.hero-section {
+    padding: 140px 0 80px;
+    background: linear-gradient(135deg, #1b5a4a, #2e8b73);
+}
+
+.stats-section {
+    margin-top: -50px;
+    padding-bottom: 60px;
+}
+
+.stat-card {
+    color: white;
+    padding: 30px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: transform .3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-6px);
+}
+
+.stat-card i {
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.stat-card h4 {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.bg-blue { background: linear-gradient(135deg, #2196f3, #21cbf3); }
+.bg-green { background: linear-gradient(135deg, #2e7d32, #66bb6a); }
+.bg-red { background: linear-gradient(135deg, #c62828, #ef5350); }
+.bg-orange { background: linear-gradient(135deg, #ef6c00, #ffb74d); }
+.action-card {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,.12);
+    transition: all .3s;
+}
+
+.action-card:hover {
+    background: #1b5a4a;
+    color: white;
+}
+
+.action-card i {
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+
+</style>
+ 
+</head>
+<body>
+ 
+  <!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container">
+
+    <!-- Logo -->
+    <a class="navbar-brand fw-bold" href="#">
+      <i class="bi bi-search-heart me-1"></i> Lost and Found Application<strong class="bg-orange">
+Admin Pannel
+      </strong> 
+    </a>
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu -->
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+        
+             <li><a  class="nav-link" href="{{ url_for('admin_app.dashboard') }}">Dashboard</a></li>
+          </a>
+        </li>
+
+     
+        <li class="nav-item">
+          
+            <li><a class="nav-link" href="{{ url_for('auth_app.logout') }}">Logout</a></li>
+          </a>
+        </li>
+      </ul>
+
+     
+    </div>
+
+  </div>
+</nav>
+
+
+
+<section class="hero-section">
+  <div class="container text-center">
+    <h1 class="fw-bold text-white">
+      Admin Dashboard
+    </h1>
+    <p class="text-white-50">
+      Control users, monitor reports & manage the system
+    </p>
+  </div>
+</section>
+
+
+<section class="stats-section">
+  <div class="container">
+    <div class="row g-4">
+
+      <div class="col-md-3">
+        <div class="stat-card bg-blue">
+          <i class="fa-solid fa-layer-group"></i>
+          <h4>{{ total_categories }}</h4>
+          <p>Categories</p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="stat-card bg-green">
+          <i class="fa-solid fa-users"></i>
+          <h4>{{ total_users }}</h4>
+          <p>Users</p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="stat-card bg-red">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          <h4>{{ total_lost }}</h4>
+          <p>Lost Items</p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="stat-card bg-orange">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <h4>{{ total_found }}</h4>
+          <p>Found Items</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="quick-actions py-5">
+  <div class="container">
+    <h3 class="text-center mb-4 fw-bold">Quick Actions</h3>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="action-card">
+          <i class="fa-solid fa-users-gear"></i>
+          <h5>Manage Users</h5>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="action-card">
+          <i class="fa-solid fa-box"></i>
+          <h5>Manage Items</h5>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="action-card">
+          <i class="fa-solid fa-chart-line"></i>
+          <h5>View Reports</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="user-types py-5">
+  <div class="container">
+
+    <div class="card shadow-sm">
+      <div class="card-body">
+
+        <div class="mb-4 text-center">
+          <h2 class="fw-bold">Top Ranked Users</h2>
+          <p class="text-muted">
+            Users with highest ranking based on contribution
+          </p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover align-middle text-center">
+            <thead class="table-success">
+              <tr>
+                <th>User ID</th>
+                <th>Username</th>
+                <th>Total Rank</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for u in ranks %}
+              <tr>
+                <td>{{ u.id }}</td>
+                <td>{{ u.username }}</td>
+                <td class="fw-bold">{{ u.total_rank }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact" class="pt-4">
+  <div class="container text-center">
+    <p>© 2025 Found and Lost Application | All Rights Reserved</p>
+  </div>
+</footer>
+
+<script>
+function toggleMenu() {
+    document.getElementById('navMenu').classList.toggle('active');
+}
+</script>
+
+</body>
+</html>

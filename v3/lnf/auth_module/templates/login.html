@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Lost & Found Application</title>
+
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+html, body {
+    height: 100%;
+    background-color: #b3e0f2;
+    font-family: 'Poppins', sans-serif;
+}
+
+.navbar {
+     background-color: #1b5a4a
+    /* background-color:  #0d6efd; */
+}
+.navbar a {
+    color: #fff !important;
+}
+
+ .form-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 80px;
+}
+
+.auth-card {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    padding: 30px;
+    width: 100%;
+    max-width: 480px;
+}
+
+.auth-card h2 {
+    color: #1b5a4a;
+    font-weight: 700;
+}
+
+.auth-card p {
+    color: #666;
+    font-size: 14px;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #333;
+}
+
+.form-control {
+    border-radius: 10px;
+    padding: 10px 14px;
+}
+
+.form-control:focus {
+    border-color: #1b5a4a;
+    box-shadow: 0 0 0 0.2rem rgba(27,90,74,.25);
+}
+
+.btn-theme {
+    background-color: #1b5a4a;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 30px;
+    padding: 10px;
+}
+
+.btn-theme:hover {
+    background-color: #144538;
+}
+
+.signup-text {
+    font-size: 14px;
+}
+
+.signup-text a {
+    color: #1b5a4a;
+    font-weight: 600;
+    text-decoration: none;
+}
+</style>
+ 
+</head>
+<body>
+ 
+  <!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container">
+
+    <!-- Logo -->
+    <a class="navbar-brand fw-bold" href="{{ url_for('index') }}">
+      <i class="bi bi-search-heart me-1"></i> FindMyItem
+    </a>
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu -->
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('index') }}">
+            
+            <i class="bi bi-house-door me-1"></i> Home
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#features">
+            <i class="bi bi-lightning-charge me-1"></i> Features
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#users">
+            <i class="bi bi-people me-1"></i> Users
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#contact">
+            <i class="bi bi-envelope me-1"></i> Contact
+          </a>
+        </li>
+      </ul>
+
+      <!-- Auth Buttons -->
+      <div class="ms-lg-3">
+        <a href="{{ url_for('auth_app.login') }}" class="btn btn-primary btn-sm me-2">
+          <i class="bi bi-box-arrow-in-right"></i> Login
+        </a>
+        <a href="{{ url_for('auth_app.signup') }}" class="btn btn-warning btn-sm">
+          <i class="bi bi-person-plus"></i> Signup
+        </a>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+<div >
+
+<div class="form-wrapper">
+  <div class="auth-card">
+
+    <div class="text-center mb-4">
+      <h2><i class="fas fa-user-plus"></i> Login</h2>
+     <p>Access your Lost and Found dashboard</p>
+    </div>
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Login Form -->
+        <form method="POST">
+
+           
+<div class="form-group select-box mb-3">
+    <label for="user_type" class="form-label fw-semibold">
+        Login As:
+    </label>
+
+    <select name="user_type"
+            id="user_type"
+            class="input-control form-select">
+        <option value="">-- Select Role --</option>
+        <option value="admin">Admin</option>
+        <option value="customer">Client</option>
+    </select>
+</div>
+<div class="mb-3">
+        <label class="form-label">Username</label>
+        <input type="text" name="username" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" required>
+      </div>
+
+          
+
+           
+            <button type="submit" class="btn btn-theme w-100">
+        <i class="bi bi-person-check"></i> Login
+      </button>
+
+        </form>
+
+        <p class="signup-text">
+            Don't have an account? 
+            <a href="{{ url_for('auth_app.signup') }}">Signup</a>
+        </p>
+
+    </div>
+
+</body>
+</html>
